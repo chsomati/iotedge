@@ -46,6 +46,9 @@
               },
               "mqttSettings__enabled": {
                 "value": "<mqttSettings__enabled>"
+              },
+              "COMPlus_DefaultStackSize": {
+                "value": "<thread_stack_size>"
               }
             },
             "status": "running",

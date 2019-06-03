@@ -160,6 +160,13 @@ function prepare_test_from_artifacts() {
                     sed -i -e "s@<LoadGen4.TransportType>@$LOADGEN4_TRANSPORT_TYPE@g" "$deployment_working_file"
                     sed -i -e "s@<amqpSettings__enabled>@$AMQP_SETTINGS_ENABLED@g" "$deployment_working_file"
                     sed -i -e "s@<mqttSettings__enabled>@$MQTT_SETTINGS_ENABLED@g" "$deployment_working_file"
+                    
+                    # Default thread stack size is 8M; for ARM32, set it to 2M
+                    local threadStackSize=80000
+                    if [[ "${image_architecture_label,,}" == 'arm32v7' ]]; then
+                        threadStackSize=20000
+                    fi
+                    sed -i -e "s@<thread_stack_size>@$threadStackSize@g" "$deployment_working_file"
                 fi
 
                 local escapedSnitchAlertUrl
