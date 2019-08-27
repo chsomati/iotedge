@@ -1097,7 +1097,8 @@ Function RunLeafDeviceTest
 )
 {
 
-    if ($leafDeviceId.Length -gt 64) {
+    if ($leafDeviceId.Length -gt 64) 
+    {
         throw "can't generate cert. asn1 device name length of 64 exceeded. $leafDeviceId"
     }
     $testCommand = $null
